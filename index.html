@@ -7,14 +7,68 @@
     <title>Lista</title>
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
 
     <script src="js/script.js"></script>
 </head>
 <body>
-    <div class="card">
-        <h1>CONTROLE DE PRODUTOS</h1>
-        <button onclick="produto.adicionar()">Adicionar</button>
-        <button onclick="produto.excluir()">Deletar</button>
-    </div>
+
+    <header>
+        <h1>Minha Lista</h1>
+    </header>
+
+    <main>
+        <div class="title">
+            <h2>Produtos</h2>
+            <span>Lista de produtos da minha loja.</span>
+        </div>
+
+        <div class="interact">
+            <div class="lineInput">
+                <label>Produto</label>
+                <input type="text" id="produto" placeholder="Digite aqui o produto">
+            </div>
+
+            <div class="lineInput">
+                <label>Valor</label>
+                <input type="text" id="Valor" placeholder="Digite aqui o valor">
+            </div>
+            <button onclick="produto.adicionar()">Adicionar</button>
+            <button onclick="produto.excluir()">Deletar</button>
+        </div>
+
+        <div class="content">
+            <table border="1">
+                <thead>
+                    <th class="center">ID</th>
+                    <th>Nome</th>
+                    <th>Valor</th>
+                    <th>Ações</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="center">1</td>
+                        <td>Mesa sala de estar</td>
+                        <td class="center">1900</td>
+                        <td class="center">
+                            <img src="img/edit.png" alt="Editar">
+                            <img src="img/delete.png" alt="Excluir">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="center">1</td>
+                        <td>Mesa sala de estar</td>
+                        <td class="center">1900</td>
+                        <td class="center">
+                            <img src="img/edit.png" alt="Editar">
+                            <img src="img/delete.png" alt="Excluir">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
 </body>
 </html>
