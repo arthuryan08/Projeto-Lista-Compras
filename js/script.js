@@ -9,11 +9,39 @@ class Produto{
     salvar(){
         let produto = this.lerDados()
         if (this.validaCampos(produto) == true) {
-            this.adicionar(produto)
+            this.adicionar(produto);
         }
-        console.log(this.arrayProdutos);
+        this.listaTabela()
+        this.cancelar()
     }
 
+    listaTabela(){
+        let tbody = document.getElementById('tbody')
+        tbody.innerText = ''
+
+        for(let i = 0; i < this.arrayProdutos.length; i++){
+            let tr = tbody.insertRow()
+
+            let td_id = tr.insertCell()
+            let td_produto = tr.insertCell()
+            let td_preco = tr.insertCell()
+            let td_acao = tr.insertCell()
+
+            td_id.innerText = this.arrayProdutos[i].id;
+            td_produto.innerText = this.arrayProdutos[i].nomeProduto;
+            td_preco.innerText = this.arrayProdutos[i].preco;
+
+            td_id.classList.add('center')        //Aqui colocando uma classe dinamicamente dentro da minha coluna
+
+            let imgEdit = document.createElement('img') //criando a tag img
+            imgEdit.src = 'img/edit.png'           //escolhendo o que vai ser a imagem
+            td_acao.appendChild(imgEdit) //colocando onde vai ficar essa tag img, no caso <td><img></td>
+            
+            let imgDel = document.createElement('img')
+            imgDel.src = 'img/delete.png'
+            td_acao.appendChild(imgDel)
+        }
+    }
     adicionar(produto){
         this.arrayProdutos.push(produto)
     }
@@ -42,7 +70,8 @@ class Produto{
     }
 
     cancelar(){
-        
+        document.getElementById('produto').value = ''
+        document.getElementById('preco').value = ''
     }
 }
 var produto = new Produto() 
