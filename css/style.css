@@ -4,14 +4,20 @@
 
 body{
     font-family: 'Nunito Sans', sans-serif;
-    background-color: #fafbfc;
+    background-color: #1f1f1f;
+}
+.title{
+    color: aliceblue;
+    text-align: center;
+    margin-bottom: 10px
 }
 
 header {
-    background-color: indigo;
+    background-color: rgb(21, 112, 9);
     padding: 3px;
-    color: white;
+    color: #fcfcfc;
     text-align: center;
+    font-weight: bolder;
 }
 
 main{
@@ -22,8 +28,9 @@ main{
     background-color: white;
     border: 1px solid #ccc;
     padding: 15px;
-    margin-top: 15px;
     border-radius: 5px;
+    margin: auto;
+    width: 490px;
 }
 
 .lineInput{
@@ -42,7 +49,7 @@ button{
     border: 0;
     padding: 10px;
     outline: 0;
-    background-color: indigo;
+    background-color: rgb(21, 112, 9);
     color: white;
     border-radius: 3px;
     font-weight: bold;
@@ -75,8 +82,19 @@ table th,td {
 
 table td img{
     width: 22px;
+    
+}
+table td{
+    background-color: white;
 }
 
 .center{
     text-align: center;
+    
+}
+
+table{
+    width: 520px;
+    margin: auto;
+    
 }
