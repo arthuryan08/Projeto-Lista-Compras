@@ -39,6 +39,7 @@ class Produto{
             
             let imgDel = document.createElement('img')
             imgDel.src = 'img/delete.png'
+            imgDel.setAttribute("onclick","produto.deletar("+ this.arrayProdutos[i].id +")")   //Comando setAttribute('evento','ação')
             td_acao.appendChild(imgDel)
         }
     }
@@ -72,6 +73,18 @@ class Produto{
     cancelar(){
         document.getElementById('produto').value = ''
         document.getElementById('preco').value = ''
+    }
+
+    deletar(id){
+
+        let tbody = document.getElementById('tbody')
+
+        for (let i = 0; i < this.arrayProdutos.length; i++) {
+            if (this.arrayProdutos[i].id == id) {
+                this.arrayProdutos.splice(i, 1)
+                tbody.deleteRow(i)
+            }
+        }
     }
 }
 var produto = new Produto() 
