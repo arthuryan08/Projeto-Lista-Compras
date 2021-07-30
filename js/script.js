@@ -3,13 +3,18 @@ class Produto{
     constructor(){
         this.id = 1
         this.arrayProdutos = []
-        
+        this.editId = null
     }
 
     salvar(){
         let produto = this.lerDados()
+
         if (this.validaCampos(produto) == true) {
-            this.adicionar(produto);
+            if(this.editId == null){
+                this.adicionar(produto);
+            } else{
+                this.atualizar(this.editId,produto)
+            }
         }
         this.listaTabela()
         this.cancelar()
@@ -35,16 +40,36 @@ class Produto{
 
             let imgEdit = document.createElement('img') //criando a tag img
             imgEdit.src = 'img/edit.png'           //escolhendo o que vai ser a imagem
+            imgEdit.setAttribute('onclick', 'produto.preparaEdicao('+ JSON.stringify(this.arrayProdutos[i]) +')')
             td_acao.appendChild(imgEdit) //colocando onde vai ficar essa tag img, no caso <td><img></td>
             
             let imgDel = document.createElement('img')
             imgDel.src = 'img/delete.png'
-            imgDel.setAttribute("onclick","produto.deletar("+ this.arrayProdutos[i].id +")")   //Comando setAttribute('evento','ação')
+            imgDel.setAttribute('onclick','produto.deletar('+ this.arrayProdutos[i].id +')')   //Comando setAttribute('evento','ação')
             td_acao.appendChild(imgDel)
         }
     }
     adicionar(produto){
+        produto.preco = parseFloat(produto.preco)
         this.arrayProdutos.push(produto)
+    }
+
+    atualizar(id, produto){
+        for (let i = 0; i < this.arrayProdutos.length; i++) {
+            if(this.arrayProdutos[i].id == id){
+                this.arrayProdutos[i].nomeProduto = produto.nomeProduto
+                this.arrayProdutos[i].preco = produto.preco
+            }
+            
+        }
+    }
+
+    preparaEdicao(dados){
+        this.editId = dados.id
+        document.getElementById('produto').value = dados.nomeProduto
+        document.getElementById('preco').value = dados.preco
+    
+        document.getElementById('btn1').innerText = 'Atualizar'
     }
 
     lerDados(){
@@ -73,16 +98,20 @@ class Produto{
     cancelar(){
         document.getElementById('produto').value = ''
         document.getElementById('preco').value = ''
+
+        document.getElementById('btn1').innerText = 'Salvar'
+        this.editId = null
     }
 
     deletar(id){
-
-        let tbody = document.getElementById('tbody')
-
-        for (let i = 0; i < this.arrayProdutos.length; i++) {
-            if (this.arrayProdutos[i].id == id) {
-                this.arrayProdutos.splice(i, 1)
-                tbody.deleteRow(i)
+        if (confirm(`Deseja realmente deletar o produto de ID: ${id}?`)){ 
+            let tbody = document.getElementById('tbody')
+    
+            for (let i = 0; i < this.arrayProdutos.length; i++) {
+                if (this.arrayProdutos[i].id == id) {
+                    this.arrayProdutos.splice(i, 1)
+                    tbody.deleteRow(i)
+                }
             }
         }
     }
